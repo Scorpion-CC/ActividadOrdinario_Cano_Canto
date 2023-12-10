@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Canto_Cano_ActividadOrdinario.Interfaces
 {
-    internal interface IJugador
+    public interface IJugador
     {
         void RealizarJugada();
         void ObtenerCartas(List<ICarta> cartas);

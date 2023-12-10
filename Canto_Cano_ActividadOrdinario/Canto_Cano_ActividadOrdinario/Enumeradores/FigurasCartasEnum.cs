@@ -8,5 +8,9 @@ namespace Canto_Cano_ActividadOrdinario.Enumeradores
 {
     public enum FigurasCartasEnum
     {
+        Diamantes,
+        Espadas,
+        Treboles,
+        Corazones
     }
 }

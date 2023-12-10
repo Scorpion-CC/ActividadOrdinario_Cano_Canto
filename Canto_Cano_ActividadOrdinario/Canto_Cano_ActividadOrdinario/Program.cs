@@ -1,4 +1,7 @@
-﻿namespace Canto_Cano_ActividadOrdinario
+﻿using Canto_Cano_ActividadOrdinario.Enumeradores;
+using Canto_Cano_ActividadOrdinario.Interfaces;
+
+namespace Canto_Cano_ActividadOrdinario
 {
     internal class Program
     {

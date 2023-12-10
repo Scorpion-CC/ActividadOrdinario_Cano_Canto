@@ -7,7 +7,7 @@ using Canto_Cano_ActividadOrdinario.Enumeradores;
 
 namespace Canto_Cano_ActividadOrdinario.Interfaces
 {
-    internal interface ICarta
+    public interface ICarta
     {
         FigurasCartasEnum Figura { get; }
         ValoresCartasEnum Valor { get; }
