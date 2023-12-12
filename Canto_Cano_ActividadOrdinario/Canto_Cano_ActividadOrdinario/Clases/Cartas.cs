@@ -9,35 +9,31 @@ using Canto_Cano_ActividadOrdinario.Clases;
 
 namespace Canto_Cano_ActividadOrdinario.Clases
 {
-    public class Cartas : ICarta , IDeckDeCartas
+    public class Cartas : ICarta
     {
-        public FigurasCartasEnum Figura => throw new NotImplementedException();
-
-        public ValoresCartasEnum Valor => throw new NotImplementedException();
-
-        public void BarajearDeck()
+        private FigurasCartasEnum _figura;
+        public FigurasCartasEnum Figura 
         {
-            throw new NotImplementedException();
+            get { return _figura; }
+            set { _figura = value; }
         }
 
-        public void MeterCarta(ICarta carta)
+        private ValoresCartasEnum _valor;
+        public ValoresCartasEnum Valor 
         {
-            throw new NotImplementedException();
+            get { return _valor; }
+            set { _valor = value; }
         }
 
-        public void MeterCarta(List<ICarta> cartas)
-        {
-            throw new NotImplementedException();
+        public Cartas (int valorCarta, int figuraCarta)
+        { 
+            Valor = (ValoresCartasEnum)valorCarta;
+            Figura = (FigurasCartasEnum)figuraCarta;
         }
 
-        public ICarta SacarCarta(int indiceCarta)
+        public override string ToString()
         {
-            throw new NotImplementedException();
-        }
-
-        public ICarta VerCarta(int indiceCarta)
-        {
-            throw new NotImplementedException();
+            return $"{Valor} de {Figura}";
         }
     }
 }
