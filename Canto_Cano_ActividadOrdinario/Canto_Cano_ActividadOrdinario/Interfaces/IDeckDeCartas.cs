@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Canto_Cano_ActividadOrdinario.Interfaces;
 
 namespace Canto_Cano_ActividadOrdinario.Interfaces
 {
