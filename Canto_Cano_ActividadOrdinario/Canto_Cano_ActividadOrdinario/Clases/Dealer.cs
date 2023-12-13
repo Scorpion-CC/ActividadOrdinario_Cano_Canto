@@ -14,7 +14,7 @@ namespace Canto_Cano_ActividadOrdinario.Clases
         Random rand = new Random();
         // variable = rand.Next(4, 21); (#minimo, #maximo, pero uno atras) /// Esto es para barajear el deck del dealer, o cualquier otro
 
-        public List<ICarta> Baraja;
+        public List<ICarta> Deck;
 
         public void BarajearDeck()
         {
@@ -61,9 +61,9 @@ namespace Canto_Cano_ActividadOrdinario.Clases
             throw new NotImplementedException();
         }
 
-        public Dealer(List<ICarta> baraja)
+        public Dealer(List<ICarta> deck)
         {
-            Baraja = baraja;
+            Deck = deck;
         }
     }
 }

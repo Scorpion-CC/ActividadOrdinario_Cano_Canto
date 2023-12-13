@@ -12,7 +12,7 @@ namespace Canto_Cano_ActividadOrdinario.Clases
     public class Jugador : IJugador
     {
 
-        public List<ICarta> Deck
+        public List<ICarta> Deck 
         {
             get;
             set;
@@ -48,9 +48,9 @@ namespace Canto_Cano_ActividadOrdinario.Clases
             throw new NotImplementedException();
         }
 
-        public Jugador(List<ICarta> baraja) 
+        public Jugador(List<ICarta> deck) 
         {
-            Deck = baraja;
+            Deck = deck;
         }
     }
 }
