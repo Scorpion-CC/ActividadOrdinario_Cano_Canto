@@ -48,8 +48,10 @@ namespace Canto_Cano_ActividadOrdinario.Clases
 
         public ICarta SacarCarta(int indiceCarta)
         {
-            Console.WriteLine($"Ha sacado la carta" + Cartas[indiceCarta].ToString());
-            return Cartas[indiceCarta];
+            ICarta cartaTemp;
+            cartaTemp = Cartas[indiceCarta];
+            Cartas.RemoveAt(indiceCarta);
+            return cartaTemp;
         }
 
         public ICarta VerCarta(int indiceCarta)

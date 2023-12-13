@@ -31,8 +31,10 @@ namespace Canto_Cano_ActividadOrdinario.Clases
         public List<ICarta> RepartirCartas(int numeroDeCartas)
         {
             List<ICarta> deckTemporal = new List<ICarta>();
-            deckTemporal.AddRange(MainDeck.Cartas.GetRange(0,numeroDeCartas));
-            MainDeck.Cartas.RemoveRange(0,numeroDeCartas);
+            for (int i = 0; i < numeroDeCartas; i++) 
+            {
+                deckTemporal.Add(MainDeck.SacarCarta(0));
+            }
             return deckTemporal;
         }
 

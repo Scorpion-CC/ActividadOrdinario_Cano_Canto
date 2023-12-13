@@ -20,12 +20,18 @@ namespace Canto_Cano_ActividadOrdinario.Clases
 
         public ICarta DevolverCarta(int indiceCarta)
         {
-            return Deck[indiceCarta];
+            ICarta cartaTemp; //variable temporal tipo ICarta para guardar y eliminar del Deck la carta que se va a devolver.
+            cartaTemp = Deck[indiceCarta];
+            Deck.RemoveAt(indiceCarta);
+            return cartaTemp;
         }
 
         public List<ICarta> DevolverTodasLasCartas()
         {
-            return Deck;
+            List<ICarta> deckTemp = new List<ICarta>(); //Lista temporal tipo ICarta para poder guardar las cartas que se van a devolver, y así poder eliminarlas antes de que eso pase.
+            deckTemp.AddRange(Deck);
+            Deck.Clear();
+            return deckTemp;
         }
 
         public ICarta MostrarCarta(int indiceCarta)
@@ -45,7 +51,7 @@ namespace Canto_Cano_ActividadOrdinario.Clases
 
         public void RealizarJugada()
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException(); //CC: No sé para qué es esta función :(
         }
 
         public Jugador(List<ICarta> deck) 
