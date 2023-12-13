@@ -20,27 +20,27 @@ namespace Canto_Cano_ActividadOrdinario.Clases
 
         public ICarta DevolverCarta(int indiceCarta)
         {
-            throw new NotImplementedException();
+            return Deck[indiceCarta];
         }
 
         public List<ICarta> DevolverTodasLasCartas()
         {
-            throw new NotImplementedException();
+            return Deck;
         }
 
         public ICarta MostrarCarta(int indiceCarta)
         {
-            throw new NotImplementedException();
+            return Deck[indiceCarta];
         }
 
         public List<ICarta> MostrarCartas()
         {
-            throw new NotImplementedException();
+            return Deck;
         }
 
         public void ObtenerCartas(List<ICarta> cartas)
         {
-            throw new NotImplementedException();
+            Deck.AddRange(cartas);
         }
 
         public void RealizarJugada()

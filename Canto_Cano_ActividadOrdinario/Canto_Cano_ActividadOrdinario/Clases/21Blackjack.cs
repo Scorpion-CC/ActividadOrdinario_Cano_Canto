@@ -9,11 +9,17 @@ using Canto_Cano_ActividadOrdinario.Clases;
 
 namespace Canto_Cano_ActividadOrdinario.Clases
 {
-    public class _21Blackjack : IJuego
+    public class _21Blackjack : IJuego 
     {
-        public IDealer Dealer => throw new NotImplementedException();
+        private List<IJugador> Jugadores = new List<IJugador>();
 
-        public bool JuegoTerminado => throw new NotImplementedException();
+        public IDealer Dealer { get; set; }
+
+        public bool JuegoTerminado 
+        {
+            get;
+            set;
+        }
 
         public void AgregarJugador(IJugador jugador)
         {
@@ -25,7 +31,7 @@ namespace Canto_Cano_ActividadOrdinario.Clases
             throw new NotImplementedException();
         }
 
-        public void JugarRonda()
+        public void JugarRonda() //Al final de la ronda vamos a crear otro jugador (el dealer) y en base a el vamos a ver quien gana y quien pierde.
         {
             throw new NotImplementedException();
         }
