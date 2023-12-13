@@ -31,7 +31,7 @@ namespace Canto_Cano_ActividadOrdinario.Clases
             Figura = (FigurasCartasEnum)figuraCarta;
         }
 
-        public override string ToString()
+        public override string ToString() //ToString para facilitar el imprimir el numero y figura de cada carta en la consola.
         {
             return $"{Valor} de {Figura}";
         }

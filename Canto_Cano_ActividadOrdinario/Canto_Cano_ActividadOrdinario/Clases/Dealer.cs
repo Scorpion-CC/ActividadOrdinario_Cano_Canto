@@ -9,7 +9,9 @@ using Canto_Cano_ActividadOrdinario.Clases;
 
 namespace Canto_Cano_ActividadOrdinario.Clases
 {
-    public class Dealer : IDealer, IJugador
+    public class Dealer : IDealer, IJugador //Las dos interfaces son porque el dealer también actúa como jugador en BlackJack,
+                                            //entonces aprovechando eso se le añade la interfaz de IJugador.
+
     {
         Random rand = new Random();
         // variable = rand.Next(4, 21); (#minimo, #maximo, pero uno atras) /// Esto es para barajear el deck del dealer, o cualquier otro

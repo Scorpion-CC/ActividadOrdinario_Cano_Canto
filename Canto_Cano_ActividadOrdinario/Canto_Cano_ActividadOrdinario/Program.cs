@@ -13,7 +13,7 @@ namespace Canto_Cano_ActividadOrdinario
             CrearMainDeck(mainDeck.Deck);
         }
 
-        static void CrearMainDeck(List<ICarta> mainDeck) 
+        static void CrearMainDeck(List<ICarta> mainDeck)  //Aquí se añade cada carta al main deck, los 13 valores para las 4 figuras de cartas.
         {
             ICarta carta;
             for (int i = 1; i <= 4; i++)
