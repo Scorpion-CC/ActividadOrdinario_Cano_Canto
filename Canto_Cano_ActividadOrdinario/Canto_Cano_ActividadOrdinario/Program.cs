@@ -9,8 +9,9 @@ namespace Canto_Cano_ActividadOrdinario
         static void Main(string[] args)
         {
             DeckDeCartas mainDeck = new DeckDeCartas(new List<ICarta>());
+            CrearMainDeck(mainDeck.Cartas);
+            Dealer dealer = new Dealer(mainDeck);
 
-            CrearMainDeck(mainDeck.Deck);
         }
 
         static void CrearMainDeck(List<ICarta> mainDeck)  //Aquí se añade cada carta al main deck, los 13 valores para las 4 figuras de cartas.
