@@ -14,7 +14,7 @@ namespace Canto_Cano_ActividadOrdinario.Clases
     {
         Random rand = new Random();
         // variable = rand.Next(4, 21); 
-        public List<ICarta> Deck 
+        public List<ICarta> Cartas
         {
             get;
             set;
@@ -25,41 +25,41 @@ namespace Canto_Cano_ActividadOrdinario.Clases
             int numRandom1, numRandom2;              //variables para poder guardar la carta actual                                                
             ICarta cartaTemporal1, cartaTemporal2;   //y la anterior del deck sin que se pierdan.
 
-            for (int i = 0; i < Deck.Count * 2; i++) 
+            for (int i = 0; i < Cartas.Count * 2; i++) 
             {
-                numRandom1 = rand.Next(0, 52);
-                numRandom2 = rand.Next(0,52);
-                cartaTemporal1 = Deck[numRandom1];
-                cartaTemporal2 = Deck[numRandom2];
-                Deck[numRandom1] = cartaTemporal2;
-                Deck[numRandom2] = cartaTemporal1;
+                numRandom1 = rand.Next(0, Cartas.Count);
+                numRandom2 = rand.Next(0, Cartas.Count);
+                cartaTemporal1 = Cartas[numRandom1];
+                cartaTemporal2 = Cartas[numRandom2];
+                Cartas[numRandom1] = cartaTemporal2;
+                Cartas[numRandom2] = cartaTemporal1;
             }
         }
 
         public void MeterCarta(ICarta carta)
         {
-            Deck.Add(carta);
+            Cartas.Add(carta);
         }
 
         public void MeterCarta(List<ICarta> cartas)
         {
-            Deck.AddRange(cartas);
+            Cartas.AddRange(cartas);
         }
 
         public ICarta SacarCarta(int indiceCarta)
         {
-            Console.WriteLine($"Ha sacado la carta" + Deck[indiceCarta].ToString());
-            return Deck[indiceCarta];
+            Console.WriteLine($"Ha sacado la carta" + Cartas[indiceCarta].ToString());
+            return Cartas[indiceCarta];
         }
 
         public ICarta VerCarta(int indiceCarta)
         {
-            return Deck[indiceCarta];
+            return Cartas[indiceCarta];
         }
 
         public DeckDeCartas(List<ICarta> deck) 
         { 
-            Deck = deck;
+            Cartas = deck;
         }
     }
 }
