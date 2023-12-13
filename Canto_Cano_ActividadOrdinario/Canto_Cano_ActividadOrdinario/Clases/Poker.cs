@@ -69,17 +69,20 @@ namespace Canto_Cano_ActividadOrdinario.Clases
             }
         }
 
-        public void JugarRonda()
+        //CC: prácticamente lo único que se debe hacer en ¨JugarRonda¨ es verificar qué tipo de mano tiene cada jugador,
+        // y de ahí asignarle un valor para que después en ¨MostrarGanador¨ sólo se imprima el jugador con más puntos (mejor deck).
+
+        public void JugarRonda() //Jugar la ronda de acuerdo a las reglas del Poker Clásico, 
+        {
+            throw new NotImplementedException(); 
+        }
+
+        public void MostrarGanador() //El jugador con mejor mano es el ganador, fácil.
         {
             throw new NotImplementedException();
         }
 
-        public void MostrarGanador()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Poker (IDealer dealer)
+        public Poker (IDealer dealer) //Aquí no se modifica nada.
         {
             Dealer = dealer;
         }

@@ -26,17 +26,21 @@ namespace Canto_Cano_ActividadOrdinario.Clases
             throw new NotImplementedException();
         }
 
-        public void IniciarJuego()
+        public void IniciarJuego() //Aquí se le reparte una carta a cada jugador y se le pregunta si quiere otra, hasta que este ya no quiera continuar.
         {
             throw new NotImplementedException();
         }
 
-        public void JugarRonda() //Al final de la ronda vamos a crear otro jugador (el dealer) y en base a el vamos a ver quien gana y quien pierde.
+        //CC: Al final de la ronda vamos a crear otro jugador (el dealer) y en base a el vamos a ver quien gana y quien pierde, tenemos que crear una lista
+        //que guarde la puntuación de los jugadores para que en ¨MostrarJugador¨ comparemos esa lista a la puntuación del dealer.
+        public void JugarRonda() 
         {
             throw new NotImplementedException();
         }
 
-        public void MostrarGanador()
+        //CC: En base al dealer verificamos quién gana y quién pierde, si este tiene más de 21 todos ganan (menos los que tengan más de 21). 
+        //Hay que hacer un if para que automáticamente se salte a los jugadores que tuvieron más de 21 (porque estos ya perdieron).
+        public void MostrarGanador() //Pueden haber varios ganadores.
         {
             throw new NotImplementedException();
         }
