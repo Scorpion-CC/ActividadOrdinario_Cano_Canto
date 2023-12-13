@@ -44,5 +44,10 @@ namespace Canto_Cano_ActividadOrdinario.Clases
         {
             throw new NotImplementedException();
         }
+
+        public _21Blackjack(IDealer dealer) //CC: Aquí no se modifica nada, a menos que muera el código cuando lo pasemos al main.
+        {
+            Dealer = dealer;
+        }
     }
 }
