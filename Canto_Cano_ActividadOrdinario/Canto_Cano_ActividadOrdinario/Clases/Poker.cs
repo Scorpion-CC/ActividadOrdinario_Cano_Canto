@@ -45,15 +45,15 @@ namespace Canto_Cano_ActividadOrdinario.Clases
 
                             Console.WriteLine("Elija la carta que quiera cambiar:");
                             numCarta = rand.Next(1, 6);
-                            Dealer.RecogerCartas(Jugadores[i].DevolverCarta(numCarta));
+                            cartasADevolver.Add(Jugadores[i].DevolverCarta(numCarta)); //Modificar la clase jugador para que se elimine la carta de este antes de darla.
+                            Dealer.RecogerCartas(cartasADevolver);
+                            cartasADevolver.Clear();
                             Jugadores[i].ObtenerCartas(Dealer.RepartirCartas(1));
                         }
                         else if (seleccion == 2)
                         {
-
-                            Dealer.RecogerCartas(Jugadores[i].DevolverTodasLasCartas());
-
-
+                            Dealer.RecogerCartas(Jugadores[i].DevolverTodasLasCartas()); //Modificar el comportamiento de la funcion para eliminar las cartas despues de darlas.
+                            Jugadores[i].ObtenerCartas(Dealer.RepartirCartas(5));
                         }
                         else { }
                         Console.WriteLine("¿Quiere cambiar otra carta? \n 1)Si 2)No");
