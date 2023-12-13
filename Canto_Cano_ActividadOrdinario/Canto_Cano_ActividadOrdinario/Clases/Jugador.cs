@@ -11,6 +11,13 @@ namespace Canto_Cano_ActividadOrdinario.Clases
 {
     public class Jugador : IJugador
     {
+
+        public List<ICarta> Deck
+        {
+            get;
+            set;
+        }
+
         public ICarta DevolverCarta(int indiceCarta)
         {
             throw new NotImplementedException();
@@ -39,6 +46,11 @@ namespace Canto_Cano_ActividadOrdinario.Clases
         public void RealizarJugada()
         {
             throw new NotImplementedException();
+        }
+
+        public Jugador(List<ICarta> baraja) 
+        {
+            Deck = baraja;
         }
     }
 }
