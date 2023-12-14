@@ -56,7 +56,7 @@ namespace Canto_Cano_ActividadOrdinario.Clases
                         {
                             Dealer.RecogerCartas(Jugadores[i].DevolverTodasLasCartas()); //Modificar el comportamiento de la funcion para eliminar las cartas despues de darlas.
                             Jugadores[i].ObtenerCartas(Dealer.RepartirCartas(5)); //Modificar el RepartirCartas para que imprima las cartas dadas.
-                            Console.WriteLine($"\nNueva baraja (Jugador[{i+1}]: ");
+                            Console.WriteLine($"\nNueva baraja (Jugador[{i+1}]): ");
                             Jugadores[i].MostrarCartas();//Aquí el usuario mostraría sus cartas.
                         }
                         else if (seleccion == 1)
@@ -89,18 +89,82 @@ namespace Canto_Cano_ActividadOrdinario.Clases
         //CC: prácticamente lo único que se debe hacer en ¨JugarRonda¨ es verificar qué tipo de mano tiene cada jugador,
         // y de ahí asignarle un valor para que después en ¨MostrarGanador¨ sólo se imprima el jugador con más puntos (mejor deck).
 
-        public void JugarRonda() //Jugar la ronda de acuerdo a las reglas del Poker Clásico, 
+        public void JugarRonda() //Jugar la ronda de acuerdo a las reglas del Poker Clásico.
         {
             for (int i = 0; i < Jugadores.Count; i++)
             {
-                
+                List<ICarta> deckTemp = new List<ICarta>();
+                deckTemp = Jugadores[i].MostrarCartas(); //Para poder acceder a los valores de las cartas del deck del jugador.
 
+                if (deckTemp[0].Figura == deckTemp[1].Figura && deckTemp[1].Figura == deckTemp[2].Figura && 
+                    deckTemp[2].Figura == deckTemp[3].Figura && deckTemp[3].Figura == deckTemp[4].Figura) //verificar que todas las figuras del deck sean iguales
+                {
+                    OrdenarCartasPorValor(deckTemp);
+                    if ((int)deckTemp[0].Valor == 1 && (int)deckTemp[1].Valor == 10 && (int)deckTemp[2].Valor == 11 && (int)deckTemp[3].Valor == 12 && (int)deckTemp[4].Valor == 13)
+                    { 
+                        Console.WriteLine($"El jugador[{i + 1}] tiene una escalera real.");
+                        puntos[i] = 11;
+                    }
+                    else if ((int)deckTemp[1].Valor == (int)deckTemp[0].Valor + 1 && (int)deckTemp[2].Valor == (int)deckTemp[0].Valor + 2 &&
+                            (int)deckTemp[3].Valor == (int)deckTemp[0].Valor + 3 && (int)deckTemp[4].Valor == (int)deckTemp[0].Valor + 4) 
+                    {
+                        Console.WriteLine($"El jugador [{i+1}] tiene una escalera de color.");
+                        puntos[i] = 10;
+                    }
+                    else { Console.WriteLine($"El jugador[{i+1}] tiene una mano del mismo color"); puntos[i] = 6; }
+
+                } 
+                else  
+                { 
+                
+                
+                }
             }
         }
 
         public void MostrarGanador() //El jugador con mejor mano (O sea con más puntos) es el ganador, fácil.
         {
-            throw new NotImplementedException();
+            
+        }
+
+        public List<ICarta> OrdenarCartasPorValor(List<ICarta> deck) 
+        {
+            ICarta cartaTemp;
+
+            for (int i = 1; i < deck.Count; i++) 
+            {
+
+                for (int j = 0; j < deck.Count - i; j++) 
+                {
+
+                    if (deck[j].Valor > deck[j + 1].Valor) 
+                    {  
+                        cartaTemp = deck[j+1];
+                        deck[j+1] = deck[j];
+                        deck[j] = cartaTemp;
+                    }
+                }
+            
+            }
+            return deck;
+        }
+        public List<int> OrdenarPorPuntajeMayor (List<int> puntos)
+        {
+            int temp;
+
+            for (int i = 1; i < puntos.Count; i++)
+            {
+                for (int j = 0; j < puntos.Count - i; j++)
+                {
+                    if (puntos[j] > puntos[j + 1])
+                    {
+                        temp = puntos[j + 1];
+                        puntos[j + 1] = puntos[j];
+                        puntos[j] = temp;
+                    }
+                }
+            }
+            return puntos;
         }
 
         public Poker (IDealer dealer) //Aquí no se modifica nada.
