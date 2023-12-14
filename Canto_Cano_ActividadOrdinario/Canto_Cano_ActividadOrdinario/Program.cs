@@ -35,6 +35,7 @@ namespace Canto_Cano_ActividadOrdinario
                 //Acá inicia el juego
                 Console.WriteLine($"Se han creado {numJugadores} jugadores, presione cualquier tecla para inciar la ronda.");
                 Console.ReadKey();
+                JuegoDe21BlackJack.Dealer.BarajearDeck();
                 JuegoDe21BlackJack.IniciarJuego();
                 JuegoDe21BlackJack.JugarRonda();
                 JuegoDe21BlackJack.MostrarGanador();
@@ -59,6 +60,7 @@ namespace Canto_Cano_ActividadOrdinario
                 //Acá inicia el juego
                 Console.WriteLine($"Se han creado {numJugadores} jugadores, presione cualquier tecla para inciar la ronda.");
                 Console.ReadKey();
+                JuegoDePoker.Dealer.BarajearDeck();
                 JuegoDePoker.IniciarJuego();
                 JuegoDePoker.JugarRonda();
                 JuegoDePoker.MostrarGanador();
@@ -70,7 +72,7 @@ namespace Canto_Cano_ActividadOrdinario
         static void CrearMainDeck(List<ICarta> mainDeck)  //Aquí se añade cada carta al main deck, los 13 valores para las 4 figuras de cartas.
         {
             ICarta carta;
-            for (int i = 1; i <= 4; i++)
+            for (int i = 0; i < 4; i++)
             {
                 for (int j = 1; j <= 13; j++)
 
