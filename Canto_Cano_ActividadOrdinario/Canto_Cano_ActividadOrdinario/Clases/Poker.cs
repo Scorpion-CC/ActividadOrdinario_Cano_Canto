@@ -33,8 +33,9 @@ namespace Canto_Cano_ActividadOrdinario.Clases
                     bool JugadorQuiereCartas = false;
                     List<ICarta> cartasADevolver = new List<ICarta>();
 
-                Console.WriteLine($"Baraja del jugador[{i+1}]:");
+                Console.WriteLine($"Primera baraja del jugador[{i+1}]:");
                 Jugadores[i].ObtenerCartas(Dealer.RepartirCartas(5));
+                Jugadores[i].MostrarCartas();
 
                 do
                 {
@@ -53,7 +54,7 @@ namespace Canto_Cano_ActividadOrdinario.Clases
                         {
                             Dealer.RecogerCartas(Jugadores[i].DevolverTodasLasCartas()); //Modificar el comportamiento de la funcion para eliminar las cartas despues de darlas.
                             Jugadores[i].ObtenerCartas(Dealer.RepartirCartas(5)); //Modificar el RepartirCartas para que imprima las cartas dadas.
-                            Console.WriteLine("Nueva baraja: ");
+                            Console.WriteLine($"\nNueva baraja (Jugador[{i+1}]: ");
                             Jugadores[i].MostrarCartas();//Aquí el usuario mostraría sus cartas.
                         }
                         else if (seleccion == 1)
