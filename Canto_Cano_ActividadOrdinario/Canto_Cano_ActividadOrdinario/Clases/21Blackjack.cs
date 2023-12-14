@@ -12,6 +12,7 @@ namespace Canto_Cano_ActividadOrdinario.Clases
     public class _21Blackjack : IJuego 
     {
         private List<IJugador> Jugadores = new List<IJugador>();
+        private List<int> Puntos = new List<int>();
 
         public IDealer Dealer { get; set; }
 
@@ -26,13 +27,14 @@ namespace Canto_Cano_ActividadOrdinario.Clases
             throw new NotImplementedException();
         }
 
-        public void IniciarJuego() //Aquí se le reparte una carta a cada jugador y se le pregunta si quiere otra, hasta que este ya no quiera continuar.
+        public void IniciarJuego() //Aquí se le reparte dos cartas a cada jugador, y ya.
         {
             throw new NotImplementedException();
         }
 
-        //CC: Al final de la ronda vamos a crear otro jugador (el dealer) y en base a el vamos a ver quien gana y quien pierde, tenemos que crear una lista
-        //que guarde la puntuación de los jugadores para que en ¨MostrarJugador¨ comparemos esa lista a la puntuación del dealer.
+        //CC: Ahora, después de iniciar el juego se le va a preguntar a cada uno si quiere una carta más, y así va a ser hasta que ya no quiera otra carta
+        //y se pasa al siguiente jugador. De preferencia hay que hacer que el bot intente no agarrar cartas si tiene más de 18 puntos (con un if) y 
+        //hay que guardar los puntos de cada uno en la lista Puntos que creamos. Al final de la ronda hay que crear un jugador más, que va a ser el dealer.
         public void JugarRonda() 
         {
             throw new NotImplementedException();
