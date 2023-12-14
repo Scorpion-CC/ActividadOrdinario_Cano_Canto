@@ -11,6 +11,8 @@ namespace Canto_Cano_ActividadOrdinario.Clases
 {
     public class Jugador : IJugador
     {
+        private int _puntos;
+        public int Puntos { get; set; }
 
         public List<ICarta> Deck 
         {
