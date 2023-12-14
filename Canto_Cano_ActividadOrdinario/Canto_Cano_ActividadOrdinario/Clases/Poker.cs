@@ -14,6 +14,8 @@ namespace Canto_Cano_ActividadOrdinario.Clases
     {
         Random rand = new Random();
 
+        private List<int> puntos = new List<int>(); //Lista que permite guardar los puntajes de los jugadores para facilitar determinar al ganador.
+
         private List<IJugador> Jugadores = new List<IJugador>();
         public IDealer Dealer { get; set; }
 
@@ -89,10 +91,14 @@ namespace Canto_Cano_ActividadOrdinario.Clases
 
         public void JugarRonda() //Jugar la ronda de acuerdo a las reglas del Poker Clásico, 
         {
-            throw new NotImplementedException(); 
+            for (int i = 0; i < Jugadores.Count; i++)
+            {
+                
+
+            }
         }
 
-        public void MostrarGanador() //El jugador con mejor mano es el ganador, fácil.
+        public void MostrarGanador() //El jugador con mejor mano (O sea con más puntos) es el ganador, fácil.
         {
             throw new NotImplementedException();
         }
