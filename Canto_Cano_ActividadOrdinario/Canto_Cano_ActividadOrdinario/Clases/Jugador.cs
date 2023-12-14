@@ -38,11 +38,16 @@ namespace Canto_Cano_ActividadOrdinario.Clases
 
         public ICarta MostrarCarta(int indiceCarta)
         {
+            Console.WriteLine($"{Deck[indiceCarta-1].Valor} de {Deck[indiceCarta-1].Figura}");
             return Deck[indiceCarta];
         }
 
         public List<ICarta> MostrarCartas() //Posiblemente haya que cambiar el comportamiento de esta función.
         {
+            for(int i = 0; i < Deck.Count; i++)
+            {
+                Console.WriteLine($"{Deck[i].Valor} de {Deck[i].Figura}");
+            }
             return Deck;
         }
 
