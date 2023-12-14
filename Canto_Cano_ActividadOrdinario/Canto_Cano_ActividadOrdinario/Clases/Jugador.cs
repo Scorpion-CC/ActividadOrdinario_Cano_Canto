@@ -39,7 +39,7 @@ namespace Canto_Cano_ActividadOrdinario.Clases
             return Deck[indiceCarta];
         }
 
-        public List<ICarta> MostrarCartas()
+        public List<ICarta> MostrarCartas() //Posiblemente haya que cambiar el comportamiento de esta función.
         {
             return Deck;
         }
