@@ -89,7 +89,8 @@ namespace Canto_Cano_ActividadOrdinario.Clases
         //CC: prácticamente lo único que se debe hacer en ¨JugarRonda¨ es verificar qué tipo de mano tiene cada jugador,
         // y de ahí asignarle un valor para que después en ¨MostrarGanador¨ sólo se imprima el jugador con más puntos (mejor deck).
 
-        public void JugarRonda() //Jugar la ronda de acuerdo a las reglas del Poker Clásico.
+        public void JugarRonda() //Jugar la ronda de acuerdo a las reglas del Poker Clásico, todos los valores dados van a ser múltiplos de 13, dependiendo del
+                                 //tipo de mano, y a estos se le añade el valor de la última carta para que se determine qué deck fue mejor.
         {
             for (int i = 0; i < Jugadores.Count; i++)
             {
@@ -103,13 +104,14 @@ namespace Canto_Cano_ActividadOrdinario.Clases
                     if ((int)deckTemp[0].Valor == 1 && (int)deckTemp[1].Valor == 10 && (int)deckTemp[2].Valor == 11 && (int)deckTemp[3].Valor == 12 && (int)deckTemp[4].Valor == 13)
                     { 
                         Console.WriteLine($"El jugador[{i + 1}] tiene una escalera real.");
-                        puntos[i] = 11;
+                        puntos[i] = 130 + (int)deckTemp[0].Figura; 
+                        //Este puntaje es para que cuente como el mayor, se le añade el valor de la figura en el caso de que hayan 2 escaleras reales. 
                     }
                     else if ((int)deckTemp[1].Valor == (int)deckTemp[0].Valor + 1 && (int)deckTemp[2].Valor == (int)deckTemp[0].Valor + 2 &&
                             (int)deckTemp[3].Valor == (int)deckTemp[0].Valor + 3 && (int)deckTemp[4].Valor == (int)deckTemp[0].Valor + 4) 
                     {
                         Console.WriteLine($"El jugador [{i+1}] tiene una escalera de color.");
-                        puntos[i] = 10;
+                        puntos[i] = 127 + (int)deckTemp[4].Valor; 
                     }
                     else { Console.WriteLine($"El jugador[{i+1}] tiene una mano del mismo color"); puntos[i] = 6; }
 
@@ -117,6 +119,7 @@ namespace Canto_Cano_ActividadOrdinario.Clases
                 else  
                 { 
                 
+
                 
                 }
             }
@@ -124,7 +127,18 @@ namespace Canto_Cano_ActividadOrdinario.Clases
 
         public void MostrarGanador() //El jugador con mejor mano (O sea con más puntos) es el ganador, fácil.
         {
-            
+            int numTemp = 0, posicionGanador = 0; //Para guardar la posición del jugador con mayor puntaje.
+            for (int i = 0; i < puntos.Count; i++) 
+            {
+                if (puntos[i] > numTemp) 
+                { 
+                
+                    numTemp = puntos[i];
+                    posicionGanador = i;
+                
+                }
+            }
+            Console.WriteLine($"El ganador es el jugador [{posicionGanador}]");
         }
 
         public List<ICarta> OrdenarCartasPorValor(List<ICarta> deck) 
@@ -147,24 +161,6 @@ namespace Canto_Cano_ActividadOrdinario.Clases
             
             }
             return deck;
-        }
-        public List<int> OrdenarPorPuntajeMayor (List<int> puntos)
-        {
-            int temp;
-
-            for (int i = 1; i < puntos.Count; i++)
-            {
-                for (int j = 0; j < puntos.Count - i; j++)
-                {
-                    if (puntos[j] > puntos[j + 1])
-                    {
-                        temp = puntos[j + 1];
-                        puntos[j + 1] = puntos[j];
-                        puntos[j] = temp;
-                    }
-                }
-            }
-            return puntos;
         }
 
         public Poker (IDealer dealer) //Aquí no se modifica nada.
