@@ -14,9 +14,9 @@ namespace Canto_Cano_ActividadOrdinario.Clases
     {
         Random rand = new Random();
 
-        private List<int> puntos = new List<int>(); //Lista que permite guardar los puntajes de los jugadores para facilitar determinar al ganador.
+        public List<int> puntos = new List<int>(); //Lista que permite guardar los puntajes de los jugadores para facilitar determinar al ganador.
 
-        private List<IJugador> Jugadores = new List<IJugador>();
+        public List<IJugador> Jugadores = new List<IJugador>();
         public IDealer Dealer { get; set; }
 
         public bool JuegoTerminado { get; set; }
@@ -92,15 +92,20 @@ namespace Canto_Cano_ActividadOrdinario.Clases
         public void JugarRonda() //Jugar la ronda de acuerdo a las reglas del Poker Clásico, todos los valores dados van a ser múltiplos de 13, dependiendo del
                                  //tipo de mano, y a estos se le añade el valor de la última carta para que se determine qué deck fue mejor.
         {
+            for (int i = 0; i < Jugadores.Count; i++) 
+            {
+                puntos.Add(0);
+            }
+            List<ICarta> deckTemp = new List<ICarta>();
             for (int i = 0; i < Jugadores.Count; i++)
             {
-                List<ICarta> deckTemp = new List<ICarta>();
+                Console.WriteLine($"\nJugador[{i+1}]:");
                 deckTemp = Jugadores[i].MostrarCartas(); //Para poder acceder a los valores de las cartas del deck del jugador.
+                deckTemp = OrdenarCartasPorValor(deckTemp);
 
                 if (deckTemp[0].Figura == deckTemp[1].Figura && deckTemp[1].Figura == deckTemp[2].Figura && 
                     deckTemp[2].Figura == deckTemp[3].Figura && deckTemp[3].Figura == deckTemp[4].Figura) //verificar que todas las figuras del deck sean iguales
                 {
-                    OrdenarCartasPorValor(deckTemp);
                     if ((int)deckTemp[0].Valor == 1 && (int)deckTemp[1].Valor == 10 && (int)deckTemp[2].Valor == 11 && (int)deckTemp[3].Valor == 12 && (int)deckTemp[4].Valor == 13)
                     { 
                         Console.WriteLine($"El jugador[{i + 1}] tiene una escalera real.");
@@ -113,15 +118,70 @@ namespace Canto_Cano_ActividadOrdinario.Clases
                         Console.WriteLine($"El jugador [{i+1}] tiene una escalera de color.");
                         puntos[i] = 127 + (int)deckTemp[4].Valor; 
                     }
-                    else { Console.WriteLine($"El jugador[{i+1}] tiene una mano del mismo color"); puntos[i] = 6; }
+                    else { Console.WriteLine($"El jugador[{i+1}] tiene una mano del mismo color"); puntos[i] = 78 + (int)deckTemp[4].Valor; }
 
                 } 
                 else  
-                { 
-                
+                {
+                    if (deckTemp[0].Valor == deckTemp[1].Valor && deckTemp[1].Valor == deckTemp[2].Valor && deckTemp[2].Valor == deckTemp[3].Valor ||
+                        deckTemp[1].Valor == deckTemp[2].Valor && deckTemp[2].Valor == deckTemp[3].Valor && deckTemp[3].Valor == deckTemp[4].Valor)
+                    {
+                        Console.WriteLine($"El jugador[{i + 1}] tiene un Poker");
+                        puntos[i] = 104 + (int)deckTemp[4].Valor;
+                    }
+                    else if ((int)deckTemp[0].Valor == (int)deckTemp[1].Valor && (int)deckTemp[1].Valor == (int)deckTemp[2].Valor && (int)deckTemp[3].Valor == (int)deckTemp[4].Valor ||
+                             (int)deckTemp[0].Valor == (int)deckTemp[1].Valor && (int)deckTemp[2].Valor == (int)deckTemp[3].Valor && (int)deckTemp[3].Valor == (int)deckTemp[4].Valor)
+                    {
+                        Console.WriteLine($"El jugador[{i + 1}] tiene un Full");
+                        puntos[i] = 91 + (int)deckTemp[4].Valor;
+                    }
+                    else if ((int)deckTemp[1].Valor == (int)deckTemp[0].Valor + 1 && (int)deckTemp[2].Valor == (int)deckTemp[0].Valor + 2 &&
+                            (int)deckTemp[3].Valor == (int)deckTemp[0].Valor + 3 && (int)deckTemp[4].Valor == (int)deckTemp[0].Valor + 4)
+                    {
 
-                
+                        Console.WriteLine($"El jugador[{i + 1}] tiene una Escalera de {deckTemp[4].Valor}");
+                        puntos[i] = 65 + (int)deckTemp[4].Valor;
+                    }
+                    else if (deckTemp[0].Valor == deckTemp[1].Valor && deckTemp[1].Valor == deckTemp[2].Valor ||
+                             deckTemp[1].Valor == deckTemp[2].Valor && deckTemp[2].Valor == deckTemp[3].Valor ||
+                             deckTemp[2].Valor == deckTemp[3].Valor && deckTemp[3].Valor == deckTemp[4].Valor)
+                    {
+                        Console.WriteLine($"El jugador[{i + 1}] tiene un Trio");
+                        puntos[i] = 52 + (int)deckTemp[2].Valor;
+                    }
+                    else if (deckTemp[0].Valor == deckTemp[1].Valor && deckTemp[2].Valor == deckTemp[3].Valor ||
+                             deckTemp[1].Valor == deckTemp[2].Valor && deckTemp[3].Valor == deckTemp[4].Valor)
+                    {
+                        Console.WriteLine($"El jugador[{i + 1}] tiene una Doble Pareja");
+                        puntos[i] = 39 + (int)deckTemp[3].Valor;
+                    }
+                    else if (deckTemp[0].Valor == deckTemp[1].Valor)
+                    {
+                        Console.WriteLine($"El jugador[{i + 1}] tiene una Pareja");
+                        puntos[i] = 26 + (int)deckTemp[1].Valor;
+                    }
+                    else if (deckTemp[1].Valor == deckTemp[2].Valor)
+                    {
+                        Console.WriteLine($"El jugador[{i + 1}] tiene una Pareja");
+                        puntos[i] = 26 + (int)deckTemp[2].Valor;
+                    }
+                    else if (deckTemp[2].Valor == deckTemp[3].Valor)
+                    {
+                        Console.WriteLine($"El jugador[{i + 1}] tiene una Pareja");
+                        puntos[i] = 26 + (int)deckTemp[3].Valor;
+                    }
+                    else if (deckTemp[3].Valor == deckTemp[4].Valor)
+                    {
+                        Console.WriteLine($"El jugador[{i + 1}] tiene una Pareja");
+                        puntos[i] = 26 + (int)deckTemp[4].Valor;
+                    }
+                    else 
+                    {
+                        Console.WriteLine($"El jugador[{i+1}] no tiene una mano. Su carta más alta es el {deckTemp[4].Valor} de {deckTemp[4].Figura}");
+                        puntos[i] = 13 + (int)deckTemp[4].Valor;
+                    }
                 }
+                deckTemp.Clear();
             }
         }
 
@@ -138,7 +198,7 @@ namespace Canto_Cano_ActividadOrdinario.Clases
                 
                 }
             }
-            Console.WriteLine($"El ganador es el jugador [{posicionGanador}]");
+            Console.WriteLine($"\n----------------------------------------\nEl ganador es el jugador [{posicionGanador + 1}]\n----------------------------------------");
         }
 
         public List<ICarta> OrdenarCartasPorValor(List<ICarta> deck) 
@@ -151,7 +211,7 @@ namespace Canto_Cano_ActividadOrdinario.Clases
                 for (int j = 0; j < deck.Count - i; j++) 
                 {
 
-                    if (deck[j].Valor > deck[j + 1].Valor) 
+                    if ((int)deck[j].Valor > (int)deck[j + 1].Valor) 
                     {  
                         cartaTemp = deck[j+1];
                         deck[j+1] = deck[j];
@@ -161,6 +221,30 @@ namespace Canto_Cano_ActividadOrdinario.Clases
             
             }
             return deck;
+        }
+
+        public List<ICarta> OrdenarCartasPorFigura(List<ICarta> deck) 
+        {
+
+            ICarta cartaTemp;
+
+            for (int i = 1; i < deck.Count; i++)
+            {
+
+                for (int j = 0; j < deck.Count - i; j++)
+                {
+
+                    if ((int)deck[j].Figura > (int)deck[j + 1].Figura)
+                    {
+                        cartaTemp = deck[j + 1];
+                        deck[j + 1] = deck[j];
+                        deck[j] = cartaTemp;
+                    }
+                }
+
+            }
+            return deck;
+
         }
 
         public Poker (IDealer dealer) //Aquí no se modifica nada.
