@@ -24,7 +24,7 @@ namespace Canto_Cano_ActividadOrdinario.Clases
 
         public void AgregarJugador(IJugador jugador)
         {
-            throw new NotImplementedException();
+            Jugadores.Add(jugador);
         }
 
         public void IniciarJuego() //Aquí se le reparte dos cartas a cada jugador, y ya.
