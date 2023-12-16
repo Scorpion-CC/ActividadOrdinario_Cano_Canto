@@ -55,9 +55,9 @@ namespace Canto_Cano_ActividadOrdinario.Clases
             {
                 Console.WriteLine($"Turno del jugador[{i+1}]: \nDeck:");
                 deckTemp = Jugadores[i].MostrarCartas();
-                for (int j = 0; j < Jugadores.Count; j++) //Esto es para calcular la puntuación actual que tiene cada jugador.
+                for (int j = 0; j < deckTemp.Count; j++) //Esto es para calcular la puntuación actual que tiene cada jugador.
                 {
-                    if ((int)deckTemp[i].Valor == 1)
+                    if ((int)deckTemp[j].Valor == 1)
                     {
                         Console.WriteLine($"\nJugador[{i+1}], elije el valor del As en tu mano \n 1) 1pt  2) 11pts");
                         if (Puntos[i] < 11)
@@ -81,8 +81,8 @@ namespace Canto_Cano_ActividadOrdinario.Clases
                 }
                 do
                 {
-                    Console.WriteLine($"Puntos actuales (Jugador[{i + 1}]): {Puntos[i]}");
-                    Console.WriteLine($"Jugador[{i + 1}], ¿quieres otra carta? \n 1)Si  2)No");
+                    Console.WriteLine($"\nPuntos actuales (Jugador[{i + 1}]): {Puntos[i]}");
+                    Console.WriteLine($"\nJugador[{i + 1}], ¿quieres otra carta? \n 1)Si  2)No");
                     if (Puntos[i] < 18)
                     {
                         seleccion = 1;
@@ -95,7 +95,7 @@ namespace Canto_Cano_ActividadOrdinario.Clases
                         seleccion = 2;
                         Console.WriteLine($"Jugador[{i + 1}]: {seleccion}");
                     }
-                    Console.WriteLine("Mano actual: ");
+                    Console.WriteLine("\nMano actual: ");
                     Console.WriteLine($"Puntaje: {Puntos[i]}");
                     Jugadores[i].MostrarCartas();
                     Console.ReadKey();
@@ -166,7 +166,29 @@ namespace Canto_Cano_ActividadOrdinario.Clases
         //Hay que hacer un if para que automáticamente se salte a los jugadores que tuvieron más de 21 (porque estos ya perdieron).
         public void MostrarGanador() //Pueden haber varios ganadores.
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Puntajes finales: ");
+            for (int i = 0; i < Jugadores.Count - 1; i++)
+            {
+                Console.WriteLine($"Jugador[{i+1}]: {Puntos[i]} pts.");
+            }
+            Console.WriteLine($"Dealer: {Puntos[Jugadores.Count]} pts.");
+
+            for (int i = 0; i < Jugadores.Count - 1; i++) 
+            {
+
+                if (Puntos[i] > 21)
+                {
+                    Console.WriteLine($"El jugador[{i + 1}] ha perdido");
+                }
+                else 
+                {
+                    if (Puntos[i] > Puntos[Puntos.Count]) 
+                    {
+
+                        Console.WriteLine($"El jugador[{i+1}] ha ganado");
+                    }            
+                }            
+            }
         }
 
         public _21Blackjack(IDealer dealer) //CC: Aquí no se modifica nada, a menos que muera el código cuando lo pasemos al main.
