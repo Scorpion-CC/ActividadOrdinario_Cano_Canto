@@ -50,10 +50,10 @@ namespace Canto_Cano_ActividadOrdinario.Clases
             Console.ReadKey();
             Console.Clear();
             int seleccion, seleccion2;
+            List<ICarta> deckTemp = new List<ICarta>();
             for (int i = 0; i < Jugadores.Count; i++)
             {
                 Console.WriteLine($"Turno del jugador[{i+1}]: \nDeck:");
-                List<ICarta> deckTemp = new List<ICarta>();
                 deckTemp = Jugadores[i].MostrarCartas();
                 for (int j = 0; j < Jugadores.Count; j++) //Esto es para calcular la puntuación actual que tiene cada jugador.
                 {
@@ -95,10 +95,71 @@ namespace Canto_Cano_ActividadOrdinario.Clases
                         seleccion = 2;
                         Console.WriteLine($"Jugador[{i + 1}]: {seleccion}");
                     }
+                    Console.WriteLine("Mano actual: ");
+                    Console.WriteLine($"Puntaje: {Puntos[i]}");
+                    Jugadores[i].MostrarCartas();
                     Console.ReadKey();
                     Console.Clear();
                 } while (Puntos[i] < 18);
+
+                if (Puntos[i] > 21) 
+                {
+                    Console.WriteLine($"\nJugador[{i + 1}], has perdido. Tienes más de 21 puntos.");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
             }
+
+            Console.WriteLine("Turno del Dealer: ");
+            List<ICarta> deck = new List<ICarta>();
+            IJugador jugador = new Jugador(deck);
+            this.AgregarJugador(jugador);
+            Jugadores[Jugadores.Count].ObtenerCartas(Dealer.RepartirCartas(2));
+            deckTemp = Jugadores[Jugadores.Count].MostrarCartas();
+            for (int i = 0; i < deckTemp.Count; i++)
+            {
+                if ((int)deckTemp[i].Valor == 1)
+                {
+                    Console.WriteLine($"\nEl dealer tiene un As en su mano.");
+                    if (Puntos[Puntos.Count] < 11)
+                    {
+                        seleccion2 = 2;
+                        Console.WriteLine($"\nEste As va a valer 11 puntos.");
+                        Puntos[Puntos.Count] += 11;
+                    }
+                    else
+                    {
+                        seleccion2 = 1;
+                        Console.WriteLine($"Este As va a valer 1 punto.");
+                        Puntos[Puntos.Count] += 1;
+                    }
+                }
+                else
+                {
+                    Puntos[Puntos.Count] += (int)deckTemp[i].Valor;
+                }
+            }
+            do
+            {
+                Console.WriteLine($"Puntos actuales del dealer: {Puntos[Puntos.Count]}");
+                if (Puntos[Puntos.Count] < 18)
+                {
+                    seleccion = 1;
+                    Console.WriteLine($"El dealer agarra otra carta.");
+                    deckTemp.AddRange(Dealer.RepartirCartas(1));
+                    Puntos[Puntos.Count] = +(int)deckTemp[deckTemp.Count].Valor;
+                }
+                else
+                {
+                    seleccion = 2;
+                    Console.WriteLine($"El dealer decide no agarrar otra carta");
+                }
+                Console.WriteLine("Mano actual del dealer:");
+                Jugadores[Jugadores.Count].MostrarCartas();
+                Console.WriteLine($"Puntaje: {Puntos[Puntos.Count]}");
+                Console.ReadKey();
+                Console.Clear();
+            } while (Puntos[Puntos.Count] < 18);
         }
 
         //CC: En base al dealer verificamos quién gana y quién pierde, si este tiene más de 21 todos ganan (menos los que tengan más de 21). 
