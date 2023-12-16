@@ -11,6 +11,8 @@ namespace Canto_Cano_ActividadOrdinario.Clases
 {
     public class _21Blackjack : IJuego 
     {
+        Random rand = new Random();
+
         private List<IJugador> Jugadores = new List<IJugador>();
         private List<int> Puntos = new List<int>();
 
@@ -29,7 +31,14 @@ namespace Canto_Cano_ActividadOrdinario.Clases
 
         public void IniciarJuego() //Aquí se le reparte dos cartas a cada jugador, y ya.
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < Jugadores.Count; i++) 
+            {
+                Puntos.Add(0);
+                Jugadores[i].ObtenerCartas(Dealer.RepartirCartas(2));
+                Console.WriteLine($"\nMano inicial del jugador[{i+1}]:");
+                Jugadores[i].MostrarCartas();
+                
+            }
         }
 
         //CC: Ahora, después de iniciar el juego se le va a preguntar a cada uno si quiere una carta más, y así va a ser hasta que ya no quiera otra carta
@@ -37,7 +46,7 @@ namespace Canto_Cano_ActividadOrdinario.Clases
         //hay que guardar los puntos de cada uno en la lista Puntos que creamos. Al final de la ronda hay que crear un jugador más, que va a ser el dealer.
         public void JugarRonda() 
         {
-            throw new NotImplementedException();
+           
         }
 
         //CC: En base al dealer verificamos quién gana y quién pierde, si este tiene más de 21 todos ganan (menos los que tengan más de 21). 
